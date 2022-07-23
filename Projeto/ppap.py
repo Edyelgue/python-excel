@@ -1,10 +1,28 @@
 import pandas as pd
-import smtplib
-import numpy as np
 
 # IMPORTAR BASE DE DADOS
 tabela_vendas = pd.read_excel('Vendas.xlsx')
+print(tabela_vendas)
 
+# Criar email (para transformar em tabela usar to.frame())
+    #instalar o pywin32 (pip3 install pywin32)
+import win32com.client as win32
+outlook = win32.Dispath('outlook.application')
+mail = outlook.CreateItem(0)
+mail.To = 'para.email(s)'
+mail.Subject = 'assunto.email'
+mail.HTMLBody = f'''
+<p>Prezados,</p>
+
+segue resultado pirimpapum blablabla:
+{tabela_vendas.to_html()}
+'''
+
+mail.Send()
+print('email enviado')
+
+
+"""
 # VISUALIZAR BASE DE DADOS
 pd.set_option('display.max_columns', None)
 print(tabela_vendas)
@@ -20,4 +38,4 @@ print(quantidade)
 # TICKET MÉDIO POR PRODUTO EM CADA LOJA
 ticket_medio = (faturamento['Valor Final'] / quantidade['Quantidade']).to_frame()
 print(ticket_medio)
-
+"""
