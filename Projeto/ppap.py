@@ -14,7 +14,7 @@ mail.Subject = 'assunto.email'
 mail.HTMLBody = f'''
 <p>Prezados,</p>
 
-segue resultado pirimpapum blablabla:
+segue resultado texto texto texto texto texto texto:
 {tabela_vendas.to_html()}
 '''
 
